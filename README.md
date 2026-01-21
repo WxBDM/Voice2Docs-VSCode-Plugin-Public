@@ -17,7 +17,7 @@ Installation can be done through the CLI. Clone the repo and install it:
 
 ```bash
 git clone https://github.com/WxBDM/Voice2Docs-Issues.git v2c-test
-code --install-extension v2c-test/releases/voice2doc-0.1.0.vsix
+code --install-extension v2c-test/voice2doc-0.1.0.vsix
 ```
 
 To install with the UI:
