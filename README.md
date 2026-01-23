@@ -11,7 +11,7 @@ Voice2Docs is a voice-to-documentation tool that allows you to create and update
 - Windows: `winget install ffmpeg`
 - Linux: `sudo apt install ffmpeg`
 
-## Installation
+## Installation of the VSCode plugin
 
 Installation can be done through the CLI. Clone the repo and install it:
 
@@ -24,18 +24,27 @@ To install with the UI:
 
 1. Open any project in Visual Studio Code
 2. Navigate to the extensions pane and click the 3 dots in the upper right corner (...)
-3. Select the .vsix file you downloaded earlier
 
-Note: This same installation process can be done with Cursor.
+<img src="images/extension-panel.png" alt="Extension Panel" height = 400>
+
+3. Select the .vsix file in this repository
+
+<img src="images/install_from_vsix.png" alt="Extension Panel" height = 200>
+
+Note: A similar installation process can be followed with Cursor.
 
 ## Initial Setup
 
 ### Authentication
 First, log in using your GitHub account. In the Accounts window of your Voice2Docs panel:
-1. Select "Login with GitHub" 
-2. A new browser window will open
-3. Sign in with your GitHub account
-4. Complete the authentication process
+
+1. Select "Login with GitHub" and a new browser will open.
+2. Sign in with your GitHub account
+
+<img src="images/github-login.png" alt="Extension Panel" height = 200>
+
+
+> **Important:** Username and password sign-in has not been tested. Use GitHub account authentication only for the time being.
 
 Once logged in, the accounts section displays:
 - Your name
@@ -43,35 +52,42 @@ Once logged in, the accounts section displays:
 - Usage for this month
 - Options to upgrade plan or sign out
 
-> **Important:** Username and password sign-in has not been tested. Use GitHub account authentication only for the time being.
+<img src="images/post-github-login.png" alt="Extension Panel" height = 300>
 
-> **Note:** Currently, there is no direct way to upgrade your plan through the interface. Plan upgrades can be processed manually if needed.
+> **Note:** Currently, there is no direct way to upgrade your plan through the interface. A plan is how I keep track of usage and prevent abuse/put features behind a paywall. If you need more usage, please reach out directly and I'll manually upgrade you to higher usage.
 
 ### Setting Up Documentation Location
-- The documentation route should be auto-detected
-- If not detected, right-click and select "Change Docs Location" under the Documentation tab
-- The application currently supports markdown files only
+
+The documentation folder should be auto-detected by finding the `docs` directory in the workspace.
+
+If not detected, right-click and select "Change Docs Location" under the Documentation tab:
+
+<img src="images/select-docs.png" alt="Extension Panel" height = 200>
+
+This will open a new window within the workspace. Select the documentation folder.
+
+> Note: the application only supports Markdown files as of pre-release. Consideration for other file types (txt, etc) may be included in future releases.
+
+### Creating New Files and Folders
+To create a new file or folder for your documentation, hover over your documentation root
+and 2 buttons will appear. Alternatively, right click on a folder:
+
+<img src="images/creating-new-files.png" alt="Extension Panel" height = 150>
+
+---
 
 ## Recording Interface
 
-### Getting Started
+### Method 1: General Recording
 Under "Recording and Usage," you'll see a microphone with "Ready to Record" status and a countdown timer. 
 
-**Important limitations:**
-- Three-minute recording limit per session to prevent API abuse and protect API keys
-- When recording begins, the interface shows "Stop and Process" or "Cancel Recording" options
+<img src="images/recording-interface.png" alt="Extension Panel" height = 150>
 
-### Creating New Files and Folders
-- Hover over your documentation root
-- Click the "New File" button to create a new file
-- Click "New Folder" button to create a new folder
+When recording begins, the interface shows "Stop and Process" or "Cancel Recording" options:
 
-### Recording Methods
+<img src="images/is-recording.png" alt="Extension Panel" height = 180>
 
-#### Method 1: General Recording
-Use the blue button underneath "Recording and Usage" to select a file to record to.
-
-Note: *this functionality may be deprecated in the future*
+> Important: there is a three-minute recording limit per session to prevent API abuse for free tiers. Paid tiers will have this cap raised.
 
 #### Method 2: Document-Specific Recording
 1. Navigate to the documentation roots section (contains all documents)
@@ -79,22 +95,16 @@ Note: *this functionality may be deprecated in the future*
 3. Click the microphone icon to start recording immediately for that specific document
 4. Alternatively, right-click and select "Record"
 
+<img src="images/record-to-a-file.png" alt="Extension Panel" height = 180>
+
 ### Recording Process
-1. Recording starts automatically once initiated
-2. The interface updates to show a red "Stop and Process" or "Cancel Recording" bar
-3. Record your documentation and edits (3-minute limit)
-4. Click "Stop and Process" when finished
-5. Wait a few seconds for the diff pop-up to appear
-6. Approve or deny the proposed changes
+When one of these buttons is clicked, the recording interface will automatically update to one of the images above with a countdown timer. Record what you want to document and click "stop & process" if you're happy with the recording. Otherwise, hit "cancel recording".
 
-## Processing Workflow
+After a few moments, you'll see a diff pop-up appear in the editor. You can approve or deny the proposed changes (I'd recommend you approve it so you don't lose these changes).
 
-When you stop and process a recording, the following happens automatically:
+Note that if you cancel a recording, it will not count towards your usage. However, denying a proposed change will count towards usage.
 
-1. **Upload**: The audio file uploads to the server
-2. **Transcription**: Audio gets transcribed to text
-3. **Conversion**: Content gets cleaned and converts to markdown format
-4. **Integration**: The markdown overwrites the content in the selected target file
+---
 
 ## Usage Limits and Notes
 
@@ -106,8 +116,8 @@ When you stop and process a recording, the following happens automatically:
 - Monthly limits can be increased upon request
 
 ### Technical Limitations
-- The application is not context-aware - it doesn't know other documentation and codebase.
-- Supports markdown files only.
+- The application is not context-aware - it doesn't know other documentation and codebase. Future iterations may include context awareness.
+- It currently supports markdown files only. Future iterations may support other formats.
 
 ## Getting Help
 
@@ -115,5 +125,3 @@ When you stop and process a recording, the following happens automatically:
 Open an [issue in GitHub](https://github.com/WxBDM/Voice2Docs-Issues/blob/main/README.md) for any bugs encountered or desired features.
 
 For assistance or support issues, reach out directly for help.
-
----
