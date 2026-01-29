@@ -17,8 +17,10 @@ Installation can be done through the CLI. Clone the repo and install it:
 
 ```bash
 git clone https://github.com/WxBDM/Voice2Docs-Issues.git v2c-test
-code --install-extension v2c-test/voice2doc-0.1.0.vsix
+code --install-extension v2c-test/voice2doc-0.1.1.vsix
 ```
+
+**Note:** The plugin is not officially released on the marketplace. You will need to do an installation via the UI.
 
 To install with the UI:
 
@@ -41,45 +43,54 @@ Note: A similar installation process can be followed with Cursor.
 ## Initial Setup
 
 ### Authentication
-First, log in using your GitHub account. In the Accounts window of your Voice2Docs panel:
 
-1. Select "Login with GitHub" and a new browser will open.
-2. Sign in with your GitHub account
+To get started with Voice2Docs, you'll need to set up authentication using an API key:
 
-<img src="images/github-login.png" alt="Extension Panel" height = 200>
+1. Navigate to the [Voice2Docs website](https://voice2docs.vercel.app) and create an account (or log in if you already have one)
+
+2. Access your dashboard where you will find an "API key" section
+
+3. Click the "Generate" button to create your API key and copy it.
+
+**Note:** Only one key per account is currently supported.
+
+<img src="images/api-key.png" alt="Extension Panel" height = 300>
 
 
-> **Important:** Username and password sign-in has not been tested. Use GitHub account authentication only for the time being.
+5. Return to the VS Code plugin, click the "Insert API key" button, and insert your API key. You'll see a drop-down at the top of your editor to paste your key.
 
-Once logged in, the accounts section displays:
-- Your name
-- Current plan/tier
-- Usage for this month
-- Options to upgrade plan or sign out
+<img src="images/add_key.png" alt="Extension Panel" height = 300>
 
-<img src="images/post-github-login.png" alt="Extension Panel" height = 300>
+Once authenticated, you'll be able to access all Voice2Docs features within the VS Code extension.
 
-> **Note:** Currently, there is no direct way to upgrade your plan through the interface. A plan is how I keep track of usage and prevent abuse/put features behind a paywall. If you need more usage, please reach out directly and I'll manually upgrade you to higher usage.
+### Working with the Documentation tab
 
-### Setting Up Documentation Location
+The Voice2Docs plugin integrates seamlessly with your VS Code workspace to manage documentation files. Understanding how the plugin interacts with your project structure is essential for effective use.
 
-The documentation folder should be auto-detected by finding the `docs` directory in the workspace.
+#### Workspace Integration
 
-If not detected, right-click and select "Change Docs Location" under the Documentation tab:
+The plugin operates by default in your workspace root directory, automatically detecting and processing markdown files within your project structure. When you open a workspace in VS Code, Voice2Docs will:
 
-<img src="images/select-docs.png" alt="Extension Panel" height = 200>
+- Scan the workspace root directory for existing markdown files
+- Display detected documentation files in the documentation tab
+- Enable recording functionality for any identified markdown files
+- Allow creation of new documentation files and folders within the workspace
 
-This will open a new window within the workspace. Select the documentation folder.
+#### File Format Support
 
-> Note: the application only supports Markdown files as of pre-release. Consideration for other file types (txt, etc) may be included in future releases.
+Voice2Docs currently supports **markdown files only** (`.md` extension). The plugin will automatically identify and display these files in the documentation interface, making them available for voice-driven content creation and updates.
+
+**Important:** Other file formats (such as `.txt`, `.rst`, or `.html`) are not currently supported but may be included in future releases as the tool evolves.
+
+#### Documentation Structure
+
+The plugin respects your existing project structure and allows you to maintain organized documentation alongside your codebase. All markdown files within your workspace will be accessible through the Voice2Docs interface, regardless of their location within subdirectories.
 
 ### Creating New Files and Folders
 To create a new file or folder for your documentation, hover over your documentation root
 and 2 buttons will appear. Alternatively, right click on a folder:
 
 <img src="images/creating-new-files.png" alt="Extension Panel" height = 150>
-
----
 
 ## Recording Interface
 
@@ -94,13 +105,30 @@ When recording begins, the interface shows "Stop and Process" or "Cancel Recordi
 
 > Important: there is a three-minute recording limit per session to prevent API abuse for free tiers. Paid tiers will have this cap raised.
 
-#### Method 2: Document-Specific Recording
+### Method 2: Document-Specific Recording
 1. Navigate to the documentation roots section (contains all documents)
 2. Hover over any document to reveal a microphone icon
 3. Click the microphone icon to start recording immediately for that specific document
 4. Alternatively, right-click and select "Record"
 
 <img src="images/record-to-a-file.png" alt="Extension Panel" height = 180>
+
+### Method 3: Status Bar Recording
+1. Click on the "Voice to Docs" text in the VS Code status bar at the bottom of your window
+
+<img src="images/status-bar-idle.png" alt="Voice to Docs Status Bar" height = 200>
+
+2. A dropdown menu appears at the top of VS Code, allowing you to select which file you want to record to.
+
+3. Select your desired file from the dropdown menu and recording will begin immediately for that specific document.
+
+<img src="images/status-bar-recording.png" alt="Status Bar Recording Control Options" height = 200>
+
+4. During recording, clicking on the status bar button again will show a dropdown menu with "Stop Recording" and "Cancel Recording" options at the top of VS Code:
+
+<img src="images/stop-or-cancel-status-bar.png" alt="Status Bar Recording Control Options" height = 100>
+
+Select one of these options to cancel or stop and transcribe your recording.
 
 ### Recording Process
 When one of these buttons is clicked, the recording interface will automatically update to one of the images above with a countdown timer. Record what you want to document and click "stop & process" if you're happy with the recording. Otherwise, hit "cancel recording".
@@ -109,19 +137,17 @@ After a few moments, you'll see a diff pop-up appear in the editor. You can appr
 
 Note that if you cancel a recording, it will not count towards your usage. However, denying a proposed change will count towards usage.
 
----
-
 ## Usage Limits and Notes
 
 ### Recording Limits
 - There is currently a 3-minute limit per recording session to prevent abuse
-- There is a 15-minute total talk limit per month. As part of testing, you can request this to increase if needed.
+- There is a 30-minute total talk limit per month. As part of testing, you can request this to increase if needed.
 - Canceled recordings do not count toward usage
 - Higher limits may be available in future versions
 - Monthly limits can be increased upon request
 
 ### Technical Limitations
-- The application is not context-aware - it doesn't know other documentation and codebase. Future iterations may include context awareness.
+- The application is not context-aware of other documentation files or the broader codebase, but it is context-aware of the current file being edited. Future iterations may include broader context awareness.
 - It currently supports markdown files only. Future iterations may support other formats.
 
 ## Getting Help
@@ -129,4 +155,6 @@ Note that if you cancel a recording, it will not count towards your usage. Howev
 ### Bug Reports and Feature Requests
 Open an [issue in GitHub](https://github.com/WxBDM/Voice2Docs-Issues/blob/main/README.md) for any bugs encountered or desired features.
 
-For assistance or support issues, reach out directly for help.
+### Assistance
+
+For assistance, please open a ticket in GitHub (above) outlining the problem and what you've tried and reach out directly.
