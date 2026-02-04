@@ -1,50 +1,43 @@
-# Using V2D - Voice Documentation Tool
+# Voice2Docs - Public Repository
+
+This repository serves as the official repository for bugs, issues, and feature requests.
 
 ## Overview
 Voice2Docs is a voice-to-documentation tool that allows you to create and update documentation by speaking naturally. The tool transcribes your speech and converts it into properly formatted markdown.
 
-## Installation of FFmpeg
+## Install Voice2Docs
 
-`ffmepg` is required to be installed on your system to do any audio recording. To install:
+To install the tool, you'll need to:
+
+1. Install FFmpeg (if not installed)
+2. Register for a Voice2Docs account
+3. Install the VSCode Plugin
+
+### Installation of FFmpeg
+
+`ffmpeg` is required to be installed on your system to do any audio recording. It's a widely used
+and trusted software. To install, either visit the [ffmpeg downloads page](https://ffmpeg.org/download.html), or install via CLI:
 
 - Mac: `brew install ffmpeg`
 - Windows: `winget install ffmpeg`
 - Linux: `sudo apt install ffmpeg`
 
-## Installation of the VSCode plugin
-
-Installation can be done through the CLI. Clone the repo and install it:
-
-```bash
-git clone https://github.com/WxBDM/Voice2Docs-Issues.git v2c-test
-code --install-extension v2c-test/voice2doc-0.1.1.vsix
-```
-
-**Note:** The plugin is not officially released on the marketplace. You will need to do an installation via the UI.
-
-To install with the UI:
-
-1. Open any project in Visual Studio Code
-2. Navigate to the extensions pane and click the 3 dots in the upper right corner (...)
-
-<img src="images/extension-panel.png" alt="Extension Panel" height = 400>
-
-3. Select the .vsix file in this repository
-
-<img src="images/install_from_vsix.png" alt="Extension Panel" height = 200>
-
-You should now see a microphone in your panel:
-
-<img src="images/vs-extension.png" alt="Extension Panel" height = 200>
+To verify installation, run `ffmpeg -version` in your terminal. You should see something such as `ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers` with more information below it.
 
 
-Note: A similar installation process can be followed with Cursor.
+### Creating a Voice2Docs account
 
-## Initial Setup
+To create an account, visit the [Voice2Docs website](https://voice2docs.vercel.app/) and register for an account. You'll receive a confirmation email with the next steps.
+
+### Installing the VS Code Extension
+
+You can install the VSCode extension from the [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=Voice2Docs.voice2docs), or by navigating to the extension panel in VSCode, typing in `Voice2Docs` and then clicking "install".
+
+## Using the Plugin
 
 ### Authentication
 
-To get started with Voice2Docs, you'll need to set up authentication using an API key:
+Before you can start working with Voice2Docs, you'll need to set up authentication using an API key:
 
 1. Navigate to the [Voice2Docs website](https://voice2docs.vercel.app) and create an account (or log in if you already have one)
 
@@ -63,9 +56,14 @@ To get started with Voice2Docs, you'll need to set up authentication using an AP
 
 Once authenticated, you'll be able to access all Voice2Docs features within the VS Code extension.
 
-### Working with the Documentation tab
+Note: You do _not_ need to use any API keys from language models (i.e. OpenAI, Anthropic), as Voice2Docs handles this for you. Round of applause for not using your own tokens?
+
+### Using Voice2Docs
 
 The Voice2Docs plugin integrates seamlessly with your VS Code workspace to manage documentation files. Understanding how the plugin interacts with your project structure is essential for effective use.
+
+Pro plan members have the option to toggle "codebase awareness", making Voice2Docs aware of not only
+your codebase, but also your documentation. Free members do not have access to this feature.
 
 #### Workspace Integration
 
